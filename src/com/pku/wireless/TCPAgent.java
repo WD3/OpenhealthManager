@@ -11,7 +11,7 @@ public class TCPAgent {
 	private int port;
 	private TcpAgentChannel channelTCP;
 
-	public TCPAgent(Specialization spec, String host, int port, String unique) {
+	public TCPAgent(Specialization spec, String host, int port) {
 		this.spec = spec;
 		this.host = host;
 		this.port = port;

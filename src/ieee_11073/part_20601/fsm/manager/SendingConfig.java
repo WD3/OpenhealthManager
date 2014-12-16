@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 package ieee_11073.part_20601.fsm.manager;
 
-import Config.BloodPressureAgent1;
+import Config.BloodPressureAgent;
 import Config.ManagerConfig;
 import ieee_11073.part_10101.Nomenclature;
 import ieee_11073.part_20601.asn1.AarqApdu;

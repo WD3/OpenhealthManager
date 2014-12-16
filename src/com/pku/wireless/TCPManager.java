@@ -14,10 +14,12 @@ import es.libresoft.openhealth.storage.ConfigStorageFactory;
 
 public class TCPManager {
 	private int port;
+	private String fileName;
 	private TcpManagerChannel channelTCP;
 	
-	public TCPManager(int port){
+	public TCPManager(int port, String fileName){
 		this.port = port;
+		this.fileName = fileName;
 	}
 	public void start(){
 		try {
@@ -31,7 +33,7 @@ public class TCPManager {
 			MeasureReporterFactory.setDefaultMeasureReporter(new ShellMeasureReporter());
 
 			//set ConfigStorage
-			File directory = new File(".");
+			File directory = new File(fileName);
 			ConfigStorageFactory.setDefaultConfigStorage(new ShellConfigStorage(directory.getCanonicalPath()));
 			
 			/* Start TCP server */

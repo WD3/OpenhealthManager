@@ -92,7 +92,7 @@ import org.bn.IEncoder;
 import org.bn.types.BitString;
 
 import Config.AgentConfig;
-import Config.BloodPressureAgent1;
+import Config.BloodPressureAgent;
 import Config.ManagerConfig;
 import es.libresoft.openhealth.Device;
 import es.libresoft.openhealth.DeviceConfig;

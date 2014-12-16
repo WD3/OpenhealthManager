@@ -28,7 +28,7 @@ package ieee_11073.part_20601.fsm.manager;
 import java.util.Collection;
 import java.util.Iterator;
 
-import Config.BloodPressureAgent1;
+import Config.BloodPressureAgent;
 import Config.ManagerConfig;
 import ieee_11073.part_10101.Nomenclature;
 import ieee_11073.part_20601.asn1.AarqApdu;

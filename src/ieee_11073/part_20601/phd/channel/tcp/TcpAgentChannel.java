@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import Config.BloodPressureAgent1;
+import Config.BloodPressureAgent;
 import es.libresoft.openhealth.Agent;
 import es.libresoft.openhealth.Specialization;
 import es.libresoft.openhealth.events.Event;

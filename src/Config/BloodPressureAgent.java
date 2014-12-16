@@ -32,6 +32,7 @@ import ieee_11073.part_20601.phd.dim.InvalidAttributeException;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
@@ -50,6 +51,8 @@ import es.libresoft.openhealth.utils.ASN1_Values;
 public class BloodPressureAgent extends Specialization{
 	
 	public static final int MDC_PRESS_BLD_NONINV = 18948;
+	public static final int MDC_PULS_RATE_NON_INV = 18474;
+	
 	public static final int MDC_DIM_BEAT_PER_MIN = 2720;
 	public static final int MDC_DIM_MMHG = 3872;
 	
@@ -59,7 +62,9 @@ public class BloodPressureAgent extends Specialization{
 		configdata.add(generateNumericConfig1());
 		configdata.add(generateMDSConfig());
 		Measures = new ArrayList<Map<HANDLE, Object>>();
-		Measures.add(generateMeasure());
+	}
+	public void addMeasure(int high, int low, int avg, Date date){
+		Measures.add(generateMeasure(high, low, avg, date));
 	}
 	
 	private DeviceConfig generateTestDeviceConfig()
@@ -146,7 +151,7 @@ public class BloodPressureAgent extends Specialization{
 		return confObj;
 	}
 
-	private Map<HANDLE,Object> generateMeasure(){
+	private Map<HANDLE,Object> generateMeasure(int high, int low, int avg, Date date){
 		Map<HANDLE,Object> measure = new Hashtable<HANDLE, Object>();
 		HANDLE handle = new HANDLE();
 		handle.setValue(new INT_U16(1));
@@ -155,30 +160,31 @@ public class BloodPressureAgent extends Specialization{
 		//set measure value
 		Collection<BasicNuObsValue> bnvlist = new ArrayList<BasicNuObsValue>();	
 		BasicNuObsValue bnv = new BasicNuObsValue();
-		bnv.setValue(new SFLOAT_Type(98));
+		bnv.setValue(new SFLOAT_Type(high));
 		bnvlist.add(bnv);	
 		bnv = new BasicNuObsValue();
-		bnv.setValue(new SFLOAT_Type(60));
+		bnv.setValue(new SFLOAT_Type(low));
 		bnvlist.add(bnv);
 		bnv = new BasicNuObsValue();
-		bnv.setValue(new SFLOAT_Type(72));
+		bnv.setValue(new SFLOAT_Type(avg));
 		bnvlist.add(bnv);
 		BasicNuObsValueCmp cmp_val = new BasicNuObsValueCmp(bnvlist);
 		//set measure date
 		AbsoluteTime time = new AbsoluteTime();
-		time.setCentury(new INT_U8(0x20));
-		time.setYear(new INT_U8(0x13));
-		time.setMonth(new INT_U8(0x08));
-		time.setDay(new INT_U8(0x04));
-		time.setHour(new INT_U8(0x10));
-		time.setMinute(new INT_U8(0x02));
-		time.setSecond(new INT_U8(0x50));
-		time.setSec_fractions(new INT_U8(0x00));
+		time.setCentury(new INT_U8(DateDecoder.setCentury(date)));
+		time.setYear(new INT_U8(DateDecoder.setYear(date)));
+		time.setMonth(new INT_U8(DateDecoder.setMonth(date)));
+		time.setDay(new INT_U8(DateDecoder.setDay(date)));
+		time.setHour(new INT_U8(DateDecoder.setHour(date)));
+		time.setMinute(new INT_U8(DateDecoder.setMinite(date)));
+		time.setSecond(new INT_U8(DateDecoder.setSecond(date)));
+		time.setSec_fractions(new INT_U8(DateDecoder.setSec_fractions(date)));
 		objlist.add(cmp_val);
 		objlist.add(time);
 		measure.put(handle, objlist);
 		return measure;
 	}
+	
 	
 	private ConfigObject generateMDSConfig(){
 		Hashtable<Integer,Attribute> attribs  = new Hashtable<Integer, Attribute>();

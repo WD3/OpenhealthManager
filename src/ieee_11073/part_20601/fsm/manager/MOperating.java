@@ -40,7 +40,7 @@ import org.bn.CoderFactory;
 import org.bn.IDecoder;
 import org.bn.IEncoder;
 
-import Config.BloodPressureAgent1;
+import Config.BloodPressureAgent;
 import ieee_11073.part_10101.Nomenclature;
 import ieee_11073.part_20601.asn1.ApduType;
 import ieee_11073.part_20601.asn1.AttrValMapEntry;

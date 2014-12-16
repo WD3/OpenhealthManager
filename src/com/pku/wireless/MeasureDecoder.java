@@ -18,7 +18,7 @@ import java.util.Queue;
 
 import cmdTester.ShellMeasure;
 
-import Config.BloodPressureAgent1;
+import Config.BloodPressureAgent;
 import es.libresoft.openhealth.events.MeasureReporter;
 import es.libresoft.openhealth.logging.Logging;
 

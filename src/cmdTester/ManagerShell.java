@@ -42,7 +42,7 @@ import com.pku.wireless.OximeterMeasure;
 import com.pku.wireless.PulseMeasure;
 import com.pku.wireless.TCPManager;
 
-import Config.BloodPressureAgent1;
+import Config.BloodPressureAgent;
 import es.libresoft.openhealth.Agent;
 import es.libresoft.openhealth.events.Event;
 import es.libresoft.openhealth.events.EventType;
@@ -79,27 +79,6 @@ public class ManagerShell {
 
 		Logging.debug("Starting CmdManager.");
 		try {
-			/* uncomment next line to get HDP support for agents 
-			// HDPManagerChannel chanHDP = new HDPManagerChannel();
-			 uncomment next line to get TCP support for agents 
-			TcpManagerChannel channelTCP = new TcpManagerChannel();
-			//Set the event manager handler to get internal events from the manager thread
-			InternalEventReporter.setDefaultEventManager(ieManager);
-			//Set target platform to android to report measures using IPC mechanism
-			MeasureReporterFactory.setDefaultMeasureReporter(new ShellMeasureReporter());
-
-			//set ConfigStorage
-			File directory = new File(".");
-			ConfigStorageFactory.setDefaultConfigStorage(new ShellConfigStorage(directory.getCanonicalPath()));
-			
-			 Start TCP server 
-			channelTCP.start();
-
-			Logging.debug("Push any key to exit");
-			System.in.read();
-
-			//chanHDP.finish();
-			channelTCP.finish();*/
 			MeasureDecoder.setMeasureListener(new MeasureListener(){
 				@Override
 				public void getBloodMeasure(MeasureEvent event) {
@@ -129,7 +108,7 @@ public class ManagerShell {
 			});
 			
 			
-			TCPManager tcpManager = new TCPManager(9999);
+			TCPManager tcpManager = new TCPManager(9999,"E:");
 			tcpManager.start();
 		} catch (Exception e) {
 			e.printStackTrace();

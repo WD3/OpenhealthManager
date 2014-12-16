@@ -40,13 +40,10 @@ public class EventAgent implements InternalEventManager {
 	public void agentChangeState(Agent agent, int stateCode,
 			String stateName) {
 		System.out.println("ID: " + agent.getId() + " state: " + stateName);
-//		if(stateName == "Operating"){
-//			Timer timer = new Timer();
-//			timer.schedule(new MyTask(agent), 2000);
-//		}	
-		if(stateName == "Disconected"){
-			agent.sendEvent(new Event(EventType.IND_TRANS_DESC));
-		}
+		if(stateName == "Operating"){
+			Timer timer = new Timer();
+			timer.schedule(new MyTask(agent), 2000);
+		}			
 	}
 	
 	class MyTask extends TimerTask{
